@@ -63,10 +63,22 @@ def get_caihongpi():
   return words.json()['newslist'][0]['content']
 
 def get_qinghua():
-  words = requests.get("http://api.tianapi.com/saylove/index?key=de2db404877a219544ae3ab78dc4e")
+  words = requests.get("http://api.tianapi.com/saylove/index?key=de2db404877a219544ae3ab78dc4e8a5")
   if words.status_code != 200:
     return get_qinghua()
   return words.json()['newslist'][0]['content']
+
+def get_shunkouliu():
+  words = requests.get("http://api.tianapi.com/skl/index?key=de2db404877a219544ae3ab78dc4e8a5")
+  if words.status_code != 200:
+    return get_shunkouliu()
+  return words.json()['newslist'][0]['content']
+
+def get_xiaohua():
+  words = requests.get("http://api.tianapi.com/joke/index?key=de2db404877a219544ae3ab78dc4e8a5&num=4")
+  if words.status_code != 200:
+    return get_xiaohua()
+  return words.json()['newslist'][0]['title'],words.json()['newslist'][0]['content'],words.json()['newslist'][1]['title'],words.json()['newslist'][1]['content'],words.json()['newslist'][2]['title'],words.json()['newslist'][2]['content'],words.json()['newslist'][3]['title'],words.json()['newslist'][3]['content']
 
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
@@ -76,7 +88,8 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature,low,high = get_weather()
-data = {"date":{"value":get_today(), "color":get_random_color()},"city":{"value":city, "color":get_random_color()},"low":{"value":str(low)+"℃", "color":get_random_color()},"high":{"value":str(high)+"℃", "color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"temperature":{"value":temperature, "color":get_random_color()},"love_days":{"value":get_count(), "color":get_random_color()},"birthday":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"dujitang":{"value":get_wordsdujitang(), "color":get_random_color()},"caihongpi":{"value":get_caihongpi(), "color":get_random_color()},"qinghua":{"value":get_qinghua(), "color":get_random_color()}}
+title1,content1,title2,content2,title3,content3,title4,content4 = get_xiaohua()
+data = {"date":{"value":get_today(), "color":get_random_color()},"city":{"value":city, "color":get_random_color()},"low":{"value":str(low)+"℃", "color":get_random_color()},"high":{"value":str(high)+"℃", "color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"temperature":{"value":temperature, "color":get_random_color()},"love_days":{"value":get_count(), "color":get_random_color()},"birthday":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"dujitang":{"value":get_wordsdujitang(), "color":get_random_color()},"caihongpi":{"value":get_caihongpi(), "color":get_random_color()},"qinghua":{"value":get_qinghua(), "color":get_random_color()},"shunkouliu":{"value":get_shunkouliu(), "color":get_random_color()},"title1":{"value":title1, "color":get_random_color()},"title2":{"value":title2, "color":get_random_color()},"title3":{"value":title3, "color":get_random_color()},"title4":{"value":title4, "color":get_random_color()},"content1":{"value":content1, "color":get_random_color()},"content2":{"value":content2, "color":get_random_color()},"content3":{"value":content3, "color":get_random_color()},"content4":{"value":content4, "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 #res2 = wm.send_template(user_id2, template_id, data)
 print(res)
