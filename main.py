@@ -54,7 +54,7 @@ def get_wordsdujitang():
   words = requests.get("http://api.tianapi.com/dujitang/index?key=de2db404877a219544ae3ab78dc4e8a5")
   if words.status_code != 200:
     return get_wordsdujitang()
-  return [ members.get('name') for members in words.get('newslist') ]
+  return [ members.get('name') for members in words.json().get('newslist') ]
 
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
