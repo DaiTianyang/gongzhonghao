@@ -91,6 +91,6 @@ wea, temperature,low,high = get_weather()
 title1,content1,title2,content2,title3,content3,title4,content4 = get_xiaohua()
 data = {"date":{"value":get_today(), "color":get_random_color()},"city":{"value":city, "color":get_random_color()},"low":{"value":str(low)+"℃", "color":get_random_color()},"high":{"value":str(high)+"℃", "color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"temperature":{"value":temperature, "color":get_random_color()},"love_days":{"value":get_count(), "color":get_random_color()},"birthday":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()},"dujitang":{"value":get_wordsdujitang(), "color":get_random_color()},"caihongpi":{"value":get_caihongpi(), "color":get_random_color()},"qinghua":{"value":get_qinghua(), "color":get_random_color()},"shunkouliu":{"value":get_shunkouliu(), "color":get_random_color()},"title1":{"value":title1, "color":get_random_color()},"title2":{"value":title2, "color":get_random_color()},"title3":{"value":title3, "color":get_random_color()},"title4":{"value":title4, "color":get_random_color()},"content1":{"value":content1, "color":get_random_color()},"content2":{"value":content2, "color":get_random_color()},"content3":{"value":content3, "color":get_random_color()},"content4":{"value":content4, "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
-#res2 = wm.send_template(user_id2, template_id, data)
+res2 = wm.send_template(user_id2, template_id, data)
 print(res)
-
+print(res2)
